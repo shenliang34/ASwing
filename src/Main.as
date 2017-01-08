@@ -5,14 +5,35 @@ package
 	import flash.events.TimerEvent;
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
-	import flash.utils.getTimer;
 	
+	import org.aswing.AsWingManager;
+	import org.aswing.Container;
+	import org.aswing.JButton;
+	import org.aswing.JFrame;
+	
+	[SWF(width="600",height="600")]
 	public class Main extends Sprite
 	{
+		private var frame:JFrame;
+		private var mainContainer:Container;
 		public function Main()
 		{
 			LoadSWF.instance.loadSwf("9scale.swf");
 			LoadSWF.instance.addEventListener(Event.COMPLETE,onComplete);
+			
+//			AsWingManager.initAsStandard(this);
+//			
+//			frame = new JFrame(this,"as");
+//			
+//			var btn:JButton = new JButton("点我");
+//			addChild(btn);
+//			
+//			mainContainer = frame.getContentPane();
+//			mainContainer.append(btn);
+//			frame.pack();
+//			frame.show();
+			var chatPane:ChatPane = new ChatPane();
+			addChild(chatPane);
 		}
 		
 		private var scaleBp:Scale9Bitmap;
@@ -31,16 +52,16 @@ package
 			var timer:Timer = new Timer(20,0);
 			timer.addEventListener(TimerEvent.TIMER,onTimer);
 			timer.start();
+			center();
 			
-			
-			var time1:Number = getTimer();
-			var arr:Array = [];
-			for (var i:int = 0; i < 1000; i++) 
-			{
-				arr.push(i);
-			}
-			var time2:Number = getTimer();
-			trace(time2 - time1);
+//			var time1:Number = getTimer();
+//			var arr:Array = [];
+//			for (var i:int = 0; i < 1000000; i++) 
+//			{
+//				arr.push(i);
+//			}
+//			var time2:Number = getTimer();
+//			trace(time2 - time1);
 		}
 		
 		protected function onTimer(event:TimerEvent):void
